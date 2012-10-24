@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{title}</title>
+    <title>{page.title}</title>
 </head>
 <body>
-    <h1>{title}</h1>
+    <h1>{page.title}</h1>
 
-    <p> cool ! this is {title} page !!</p>
+    <p> cool ! this is {page.title} page !!</p>
 
-    <p>{.}</p>
+    <ul>
+    {#navigation}
+    <li>{.}</li>
+    {/navigation}
+    </ul>
 </body>
 </html>
