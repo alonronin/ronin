@@ -8,7 +8,7 @@ var express = require('express'),
     path = require('path'),
     cons = require('consolidate');
 
-var app = express();
+var app = module.exports = express();
 
 app.configure(function(){
     app.set('port', process.env.PORT || 80);
@@ -27,7 +27,7 @@ app.configure(function(){
 
     app.use(express.static(path.join(__dirname, 'public')));
 
-    require('./admin')(app, express);
+    require('./admin')(app);
 
     app.use(app.router);
 

@@ -10,10 +10,15 @@ var navigationSchema = new Schema({
     show: { type: Boolean, 'default': true }
 });
 
-var navigation = module.exports = mongoose.model('navigation', navigationSchema);
+navigationSchema.methods.toString = function(){
+    return this.title;
+};
 
 navigationSchema.path('url').validate(function(v, callback){
     this.db.model('navigation').findOne().where('url', this.url).ne('_id', this._id).exec(function(err, url){
         callback(url ? false: true);
     });
 }, 'url already exists');
+
+var navigation = module.exports = mongoose.model('navigation', navigationSchema);
+

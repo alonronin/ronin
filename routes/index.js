@@ -55,7 +55,6 @@ var content = function(req, res, next){
 };
 
 module.exports = function(app){
-    // rewrite rules
     models
         .redirect
         .find()
