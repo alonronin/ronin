@@ -13,7 +13,6 @@ app.configure(function(){
     app.set('views', __dirname + '/views');
     app.set('mongo', process.env.MONGOLAB_URI || 'mongodb://localhost/ronin');
 
-
     app.use(express.compress());
     app.use(express.favicon());
     app.use(express.bodyParser());
@@ -30,7 +29,6 @@ app.configure(function(){
         res.status(404);
         res.end('Oops!!!');
     })
-
 });
 
 app.configure('development', function(){
