@@ -8,10 +8,6 @@
 
     <p> cool ! this is {page.title} page !!</p>
 
-    <ul>
-    {#navigation}
-    <li>{.}</li>
-    {/navigation}
-    </ul>
+    {>"views/partials/menu.html"/}
 </body>
 </html>

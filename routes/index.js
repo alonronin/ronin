@@ -1,5 +1,8 @@
 var models = require('../models');
 
+/*
+    middle-wares
+ */
 var page = function(req, res, next){
     var id = req.query.id;
     var params = req.params[0];
@@ -52,6 +55,7 @@ var content = function(req, res, next){
 };
 
 module.exports = function(app){
+    // rewrite rules
     models
         .redirect
         .find()
@@ -65,12 +69,7 @@ module.exports = function(app){
             }
         });
 
-    app.get('/api', function(req, res){
-        models.navigation.find().exec(function(err, docs){
-            res.json(err || docs);
-        })
-    });
-
+    //cms rules
     app.get('*', [navigation, page, content], function(req, res, next){
         if(req.page){
             var o = {};

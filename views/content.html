@@ -8,15 +8,15 @@
 
 <p> cool ! this is {page.title} page !!</p>
 
-<ul>
-    {#navigation}
-    <li>{.}</li>
-    {/navigation}
-</ul>
+{>"views/partials/menu.html"/}
 
 <ul>
     {#content}
-    <li>{.}</li>
+    <li>
+        <h2>{title}</h2>
+
+        <div>{text|s}</div>
+    </li>
     {/content}
 </ul>
 </body>
