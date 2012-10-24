@@ -1,8 +1,23 @@
+module.exports = function(app){
 
-/*
- * GET home page.
- */
+    app.get('/api', function(req, res){
+        require('../models').navigation.find().exec(function(err, docs){
+            res.json(err || docs);
+        })
+    });
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+    app.get('*', function(req, res, next){
+        require('../models')
+            .navigation
+            .findOne()
+            .where('url', req.params[0].replace(/^\//, '') || null)
+            .where('show', true)
+            .populate('template')
+            .exec(function(err, doc){
+                if(doc)
+                    res.render(doc.template.title, doc);
+                else
+                    next(err);
+            })
+    });
 };

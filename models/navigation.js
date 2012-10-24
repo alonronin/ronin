@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 var navigationSchema = new Schema({
     title: { type: String, required: true },
     url: { type: String },
+    template: { type: ObjectId, ref: 'template'},
     order: { type: Number, editable: false },
     show: { type: Boolean, 'default': true }
 });
@@ -16,26 +17,3 @@ navigationSchema.path('url').validate(function(v, callback){
         callback(url ? false: true);
     });
 }, 'url already exists');
-
-
-/*
-navigationSchema.pre('save', function (next) {
-    var self = this;
-
-    self.validate(function (err) {
-
-        console.log(this);
-        next();
-    });
-
-
-    */
-/*navigation.findOne().where('url', self.url).exec(function(err, url){
-        if(url) {
-            self.invalidate('url', 'url already exists')
-        }
-
-        next(err);
-    });*//*
-
-});*/
