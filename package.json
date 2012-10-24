@@ -1,0 +1,21 @@
+{
+  "name": "ronin-co-il",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "~3.0.0rc5",
+    "admin-with-forms": "git://github.com/etaypere/admin-forms.git",
+    "j-forms": "git://github.com/Empeeric/nodejs-forms.git",
+    "mongoose": "~3.3.1",
+    "jade": "~0.27.6",
+    "consolidate": "~0.4.0",
+    "dustjs-linkedin": "~1.1.1"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
+}
