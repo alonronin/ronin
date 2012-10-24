@@ -1,0 +1,12 @@
+/**
+*	Typography CSS
+*/
+#banner .description h2 span ,#banner .description p , #content .tittle h2{font-weight:100; font-family:"Open Sans",Arial,sans-serif;}
+
+{font-weight:400; font-family:"Open Sans",Arial,sans-serif;}
+
+#banner .description h2 ,#services .tab-content h3 ,#services .tab-list ul li a ,#services ul.tab-strip li a{font-weight:600; font-family:"Open Sans",Arial,sans-serif;}
+
+#main-navigation ul li a ,#dashboard .section h6 ,#dashboard .contact-form ul li input.sent-btn,.post h1 , .post h2 ,.post h3 ,a.button2 ,a.button1 ,#services ul.tab-strip li.active a{font-weight:700; font-family:"Open Sans",Arial,sans-serif;}
+
+{font-weight:400; font-style:italic; font-family:"Droid Serif",Arial,sans-serif;}

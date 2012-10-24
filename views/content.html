@@ -1,24 +1,56 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
 <head>
-    <title>{page.title}</title>
+    {>"views/partials/head.html"/}
 </head>
+
 <body>
-<h1>{page.title}</h1>
+<div id="container">
 
-<p> cool ! this is {page.title} page !!</p>
+    <!-- Header-->
+    {>"views/partials/header.html"/}
+    <!--/Header-->
 
-{>"views/partials/menu.html"/}
+    <!-- Content-->
+    <div id="content">
+        <div class="wrapper clearfix"> <span class="top">&nbsp;</span>
 
-<ul>
-    {#content}
-    <li>
-        <h2>{title}</h2>
+            {>"views/partials/title.html"/}
 
-        {?picture.url}<img src="{picture.url}" alt="">{/picture.url}
-        <div>{text|s}</div>
-    </li>
-    {/content}
-</ul>
+            <div class="inner-content clearfix">
+
+                <div class="cms-content clearfix">
+                    <ul>
+                        {#content}
+                        <li>
+                            <h2>{title}</h2>
+
+                            {?picture.url}<img src="{picture.url}" alt="">{/picture.url}
+
+                            <div class="cms-editor">{text|s}</div>
+                        </li>
+                        {/content}
+                    </ul>
+                </div>
+
+                <span class="arrow1">&nbsp;</span> </div>
+
+            {>"views/partials/phone.html"/}
+        </div>
+    </div>
+    <!--/Content-->
+
+    <!-- Footer-->
+    {>"views/partials/footer.html"/}
+    <!-- /Footer-->
+</div>
+<!--! end of #container -->
+
+<!-- SCRIPTS -->
+{>"views/partials/scripts.html"/}
+
+<!-- CUSTOM JS CODE SPECIFIC TO THIS PAGE -->
+<script src="resources/js/home.js" type="text/javascript"></script>
+
 </body>
 </html>

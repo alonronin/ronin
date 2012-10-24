@@ -3,6 +3,21 @@ var models = require('../models');
 /*
     middle-wares
  */
+var config = function(req, res, next){
+    models
+        .config
+        .find()
+        .exec(function(err, config){
+            var o = {};
+            config.forEach(function(con){
+                o[con.key] = con.value;
+            });
+
+            req.config = o;
+            next(err);
+        })
+};
+
 var page = function(req, res, next){
     var id = req.query.id;
     var params = req.params[0];
@@ -69,12 +84,13 @@ module.exports = function(app){
         });
 
     //cms rules
-    app.get('*', [navigation, page, content], function(req, res, next){
+    app.get('*', [config, navigation, page, content], function(req, res, next){
         if(req.page){
             var o = {};
             o.page = req.page;
             o.navigation = req.navigation || [];
             o.content = req.content || [];
+            o.config = req.config || {};
 
             res.render(req.page.template.title, o);
         }
