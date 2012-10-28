@@ -12,7 +12,9 @@
     "mongoose": "~3.3.1",
     "jade": "~0.27.6",
     "consolidate": "~0.4.0",
-    "dustjs-linkedin": "~1.1.1"
+    "dustjs-linkedin": "~1.1.1",
+    "dustjs-helpers": "~1.1.0",
+    "cloudinary": "~0.2.5"
   },
   "engines": {
     "node": "0.8.x",
