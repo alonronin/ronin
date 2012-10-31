@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -29,7 +28,7 @@ dust.helpers["cloudinary"] = function (chunk, context, bodies, params) {
 var app = module.exports = express();
 
 app.configure(function(){
-    app.set('cloudinary', process.env.CLOUDINARY_URL='cloudinary://257582562521111:espYKm0g78k1eeWrccO20svbALc@ronin');
+    app.set('cloudinary', process.env.CLOUDINARY_URL);
     app.set('port', process.env.PORT || 80);
     app.set('mongo', process.env.MONGOLAB_URI || 'mongodb://localhost/ronin');
 
