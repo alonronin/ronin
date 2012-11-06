@@ -3,10 +3,12 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.Types.ObjectId;
 
 var navigationSchema = new Schema({
+    parent: { type: ObjectId, ref: 'navigation'},
     title: { type: String, required: true },
-    url: { type: String },
+    url: { type: String, trim: true, lowercase: true},
     template: { type: ObjectId, ref: 'template'},
     order: { type: Number, editable: false },
+    menu: { type: Boolean, 'default': true },
     show: { type: Boolean, 'default': true }
 });
 

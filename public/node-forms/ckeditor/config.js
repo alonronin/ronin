@@ -7,9 +7,10 @@ CKEDITOR.editorConfig = function( config )
 {
 	// Define changes to default configuration here. For example:
 	config.language = 'he';
+    config.forcePasteAsPlainText = true;
 	// config.uiColor = '#AADC6E';
 	config.toolbar = [
-   ['Bold','Italic','Underline','StrikeThrough','-','Outdent','Indent','-','Blockquote'],
+   ['Source'],['Bold','Italic','Underline','StrikeThrough','-','Outdent','Indent','-','Blockquote'],
    ['NumberedList','BulletedList','-','JustifyRight','JustifyCenter','JustifyLeft','JustifyBlock'],
    ['Link']
 	] ;

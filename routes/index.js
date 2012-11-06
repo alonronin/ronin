@@ -1,7 +1,7 @@
 var models = require('../models');
 
 /*
-    middle-wares
+ middle-wares
  */
 var config = function(req, res, next){
     models
@@ -34,39 +34,37 @@ var page = function(req, res, next){
         .where('show', true)
         .populate('template')
         .exec(function(err, page){
-            if(page) req.page = page;
+            if(page) req.page = page.toObject();
             next(err);
         })
 };
 
-var navigation = function(req, res, next){
-    models
-        .navigation
-        .find()
-        .where('show', true)
-        .sort({order: 1})
-        .exec(function(err, navigation){
-            req.navigation = navigation;
-            next(err);
-        })
-};
+var crumbs = function(req, res, next){
+    var crumbs = [];
 
-var content = function(req, res, next){
-    if( req.page && req.page.id ) {
+    var parent = function(id){
+        models
+            .navigation
+            .findOne()
+            .where('_id', id)
+            .exec(function(err, page){
+                if(page) {
+                    crumbs.push(page.toObject());
+                    parent(page.parent);
+                }else{
+                    req.crumbs = crumbs.reverse();
+                    next()
+                }
 
-    models
-        .content
-        .find()
-        .where('show', true)
-        .where('navigation', req.page.id)
-        .sort({order: 1})
-        .exec(function(err, content){
-            req.content = content;
-            next(err);
-        })
+            })
+    };
 
-    } else
-        next()
+    if(req.page){
+        req.page.last = true;
+        crumbs.push(req.page);
+        parent(req.page.parent);
+    }
+    else next();
 };
 
 module.exports = function(app){
@@ -84,14 +82,14 @@ module.exports = function(app){
         });
 
     //cms rules
-    app.get('*', [config, navigation, page, content], function(req, res, next){
+    app.get('*', [config, page, crumbs], function(req, res, next){
         if(req.page){
             var o = {};
             o.page = req.page;
-            o.navigation = req.navigation || [];
-            o.content = req.content || [];
-            o.config = req.config || {};
+            o.page.query = req.query;
 
+            o.config = req.config || {};
+            o.crumbs = req.crumbs || {};
             res.render(req.page.template.title, o);
         }
         else

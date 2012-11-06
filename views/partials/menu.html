@@ -1,5 +1,5 @@
 <ul class="clearfix">
-    {#navigation}
-    <li><a href="{?url}{url}{:else}?id={id}{/url}">{title}</a></li>
-    {/navigation}
+    {@menu}
+    <li {?dock}class="active"{/dock}><a href="{?url}{url}{:else}?id={id}{/url}">{title}</a></li>
+    {/menu}
 </ul>

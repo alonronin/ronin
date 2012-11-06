@@ -63,11 +63,13 @@ h1, h2, h3, h4, h5, h6, p, li { line-height:1.0em; }
 
 /*---- Dashboard ---*/
 
+
+#dashboard {font-family: Arial, sans-serif;}
 #dashboard .wrapper{ padding:51px 0 36px; position:relative;}
 #dashboard .wrapper span.arrow2{ background:url(../images/theme/dashboard-top-bg.gif) no-repeat left top; height:8px; width:15px; position:absolute; left:50%; top:0;}
 
 /*---- Footer ----*/
-#footer { background:#1f1f1f; }
+#footer { background:#1f1f1f; font-family: Arial, sans-serif;}
 #footer .wrapper{ padding:23px 0 24px;}
 
 /*------------------------------------------
@@ -218,14 +220,14 @@ div#banner div.wrapper a.next-btn:hover{ background:url(../images/theme/previous
 
 /*---- Dashboard ---*/
 #dashboard .section{ width:205px; float:left; margin-right:25px;}
-#dashboard .section h6{ font-size:11px; color:#fff; line-height:24px; margin-bottom:12px; text-transform:uppercase;}
-#dashboard .section p{ font-size:11px; color:#989898; line-height:18px; font-weight:normal;}
+#dashboard .section h6{ font-size:16px; color:#fff; line-height:24px; margin-bottom:12px; text-transform:uppercase;}
+#dashboard .section p{ font-size:12px; color:#989898; line-height:18px; font-weight:normal;}
 
 /*---- Usefull - Stuff ---*/
 #dashboard .usefull-stuff{ margin-right:29px;}
 #dashboard .usefull-stuff ul ,#dashboard .blog-posts ul ,#dashboard .contact-form ul{ margin:0; padding:0;}
 #dashboard .usefull-stuff ul li{  list-style:none; border-bottom:1px solid #3b3b3b;}
-#dashboard .usefull-stuff ul li a{background:url(../images/theme/arrow.png) no-repeat right center; padding-right:13px; color:#9b9b9b; line-height:30px; font-size:11px; font-weight:normal;}
+#dashboard .usefull-stuff ul li a{background:url(../images/theme/arrow.png) no-repeat right center; padding-right:13px; color:#9b9b9b; line-height:30px; font-size:12px; font-weight:normal;}
 #dashboard .usefull-stuff ul li a:hover,#dashboard .usefull-stuff ul li.active a ,#dashboard .blog-posts ul li a:hover ,#dashboard .blog-posts ul li.active a{ text-decoration:none; color:#339933;}
 #dashboard .usefull-stuff ul li.last{ border-bottom:none;}
 
@@ -238,13 +240,13 @@ div#banner div.wrapper a.next-btn:hover{ background:url(../images/theme/previous
 #dashboard .blog-posts ul li span.metadata{ color:#696969; line-height:16px; font-size:11px; font-weight:normal;}
 
 /*---- Contact - Form ---*/
-#dashboard .contact-form{ margin-right:0;}
+#dashboard .contact-form{ margin-right:0; font-family: Arial, sans-serif;}
 #dashboard .contact-form ul li{ list-style:none; margin-bottom:10px;}
 #dashboard .contact-form ul li span.textbox{ background:url(../images/theme/textbox-bg.png) no-repeat left top; height:13px; width:187px; display:block; padding:10px 9px;}
-#dashboard .contact-form ul li input.textbox{ padding:0; background:transparent; border:none; color:#393939; font-size:11px; font-weight:normal; line-height:13px; width:100%; height:13px;}
+#dashboard .contact-form ul li input.textbox{ padding:0; background:transparent; border:none; color:#999999; font-size:12px; font-weight:normal; line-height:13px; width:100%; height:13px;}
 
 #dashboard .contact-form ul li span.textarea{ background:url(../images/theme/textarea-bg.png) no-repeat left top; height:71px; width:183px; display:block; padding:8px 11px;}
-#dashboard .contact-form ul li textarea.textarea{ overflow:hidden; margin:0; background:transparent; border:none; color:#393939; font-size:11px; font-weight:normal; line-height:13px; width:100%; height:71px; resize:none;}
+#dashboard .contact-form ul li textarea.textarea{ font-family: Arial, sans-serif; overflow:hidden; margin:0; background:transparent; border:none; color:#999999; font-size:12px; font-weight:normal; line-height:13px; width:100%; height:71px; resize:none;}
 
 #dashboard .contact-form ul li span.sent-btn{ background:url(../images/theme/sent-btn.png) no-repeat left top; height:33px; width:82px;  display:block;  }
 #dashboard .contact-form ul li input.sent-btn{ background:transparent; border:none; color:#8a8a8a; font-size:13px; line-height:33px; height:33px; width:82px; cursor:pointer; padding:0;}
@@ -282,3 +284,14 @@ a.button2:hover{ text-decoration:none;}
 /*------------------------------------------
 // 4.1  INDEX PAGE SPECIFIC STYLES
 //------------------------------------------*/
+
+
+div.editor,
+div.editor div,
+div.editor p{
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    line-height: 26px;
+    color: #666666;
+    margin: 20px 0!important;
+}

@@ -4,26 +4,7 @@
 
 var express = require('express'),
     http = require('http'),
-    path = require('path'),
-    cons = require('consolidate'),
-    dust = require('dustjs-helpers');
-
-dust.helpers["cloudinary"] = function (chunk, context, bodies, params) {
-    var picture = context.get(params.path);
-    return chunk.write(
-        require('cloudinary').url(
-            picture.public_id + '.' + (params.format || picture.format), {
-                width: params.width,
-                height: params.height,
-                type: params.type,
-                crop: params.crop,
-                gravity: params.gravity,
-                radius: params.radius,
-                quality: params.quality
-            }
-        )
-    )
-};
+    path = require('path');
 
 var app = module.exports = express();
 
@@ -60,14 +41,9 @@ app.configure('development', function(){
     app.use(express.errorHandler());
 });
 
+require('./helpers');
 require('mongoose').connect(app.get('mongo'));
 require('./routes')(app);
-
-app.get('/test', function(req, res){
-    require('./models').pics.find().exec(function(err, pics){
-        res.render('test', {pics: pics});
-    });
-});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
