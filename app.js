@@ -32,7 +32,7 @@ app.configure(function(){
 
     app.use(function(req, res, next){
         res.status(404);
-        res.render('404', {title: 'Page Not Found', content: 'we are sorry, but the requested page is not found.'});
+        res.render('404', {title: 'The page cannot be found', content: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.'});
     })
 });
 
