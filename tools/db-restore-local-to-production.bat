@@ -1,3 +1,3 @@
 cd ..
-mongorestore -u shadow -p shadow123 -h ds039417.mongolab.com --port 39417 -d shadowil --drop dump/ronin
+mongorestore -u roninil -p ronin1974 -h ds039427.mongolab.com --port 39427 -d roninil --drop dump/ronin
 pause

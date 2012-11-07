@@ -1,3 +1,3 @@
 cd ..
-mongodump -u shadow -p shadow123 -h ds039417.mongolab.com --port 39417 -d shadowil
+mongodump -u roninil -p ronin1974 -h ds039427.mongolab.com --port 39427 -d roninil
 pause
