@@ -123,10 +123,10 @@ div#banner div.wrapper a.next-btn:hover{ background:url(../images/theme/previous
 
 /*---- Features ----*/
 #features{ padding-top:58px; margin-bottom:10px;}
-#features .one-fourth{ width:216px; float:left; margin-right:15px; }
+#features .one-fourth{ width:216px; float:left; margin-right:15px; font-family: "Open Sans",Arial,sans-serif; font-size: 16px;}
 #features .one-fourth.first p{ margin-bottom:8px;} 
 #features .one-fourth.last{ margin-right:0; }
-#features .one-fourth a{ color:#339933; font-size:11px; line-height:30px; text-transform:uppercase;font-weight:600; border-bottom: 1px dotted #339933; font-family: Lucida, sans-serif ; }
+#features .one-fourth a{ color:#339933; font-size:13px; line-height:30px; text-transform:uppercase;font-weight:600; border-bottom: 1px dotted #339933; font-family: Arial, sans-serif ; }
 #features .one-fourth a:hover{ text-decoration:none;}
 
 /*---- Heading----*/
@@ -168,9 +168,9 @@ div#banner div.wrapper a.next-btn:hover{ background:url(../images/theme/previous
 #services .tab-content .testimonial .bottom{ background:url(../images/theme/box1.png) no-repeat left bottom; height:42px; margin-bottom:-39px; position:relative;}
 
 /*---- Clients----*/
-#clients{ position:relative; padding:48px 0;}
+#clients{ position:relative; overflow: hidden; top: -15px;}
 
-#clients a.previous-btn ,#clients a.next-btn{ display:block; top:24px; position:absolute; height:13px; width:9px;}
+#clients a.previous-btn ,#clients a.next-btn{ cursor: pointer; display:block; top:65px; position:absolute; height:13px; width:9px; z-index: 1000}
 #clients a.previous-btn:hover ,#clients a.next-btn:hover{ text-decoration:none;}
 
 #clients a.previous-btn{ background:url(../images/theme/client-previous-btn.png) no-repeat left top; left:0; }
@@ -186,13 +186,13 @@ div#banner div.wrapper a.next-btn:hover{ background:url(../images/theme/previous
 
 /*---- Post ---*/
 .post h1 { font-size:36px; line-height:40px; color:#3e3e3e; margin-bottom:7px;}
-.post h2 { font-size:18px; line-height:21px; color:#339933; text-shadow:1px -1px #a0cfa0; text-transform:uppercase; margin-bottom:12px;}
-.post h3 { font-size:16px; line-height:16px; color:#3e3e3e; margin-bottom:6px; }
+.post h2 { font-size:20px; line-height:20px; color:#339933; text-shadow:1px -1px #a0cfa0; text-transform:uppercase; margin-bottom:22px;}
+.post h3 { font-size:20px; line-height:20px; color:#3e3e3e; margin-bottom:6px; }
 .post h4 { font-size:220%; margin-bottom:10px;}
 .post h5 { font-size:200%; margin-bottom:10px;}
 .post h5 { font-size:180%; margin-bottom:10px;}
 
-.post p { color:#737373; line-height:17px; font-size:11px; margin-bottom:25px; font-weight:normal;}
+.post p { color:#737373; line-height:20px; font-size:13px; margin-bottom:25px; font-weight:normal;}
 .post p a { color:#339933; }
 
 .post blockquote { margin-bottom:20px;   padding:20px 18px 0 19px; }
@@ -295,3 +295,65 @@ div.editor p{
     color: #666666;
     margin: 20px 0!important;
 }
+
+.scrollable {
+
+    /* required settings */
+    position:relative;
+    overflow:hidden;
+    width: 871px;
+    height:200px;
+    direction: ltr;
+}
+
+/*
+   root element for scrollable items. Must be absolutely positioned
+   and it should have a extremely large width to accomodate scrollable
+   items.  it's enough that you set the width and height for the root
+   element and not for this element.
+*/
+.scrollable .items {
+    /* this cannot be too large */
+    width:20000em;
+    position:absolute;
+    clear:both;
+}
+
+.items div {
+    float:left;
+    width:871px;
+}
+
+/* single scrollable item */
+.scrollable img {
+    float:left;
+    margin:20px 5px 20px 21px;
+    width:190px;
+    height:150px;
+}
+
+/* this makes it possible to add next button beside scrollable */
+.scrollable {
+    float:left;
+}
+
+/* prev, next, prevPage and nextPage buttons */
+a.browse {
+    background-repeat: no-repeat!important;
+    display:block;
+    width:9px;
+    height:13px;
+    float:left;
+    margin:87px 10px;
+    cursor:pointer;
+    font-size:1px;
+}
+
+/* right */
+a.right { background: url(../images/theme/client-next-btn.png); clear:right; margin-right: 0px;}
+a.right:hover { background: url(../images/theme/client-next-hover.png) }
+
+
+/* left */
+a.left { background: url(../images/theme/client-previous-btn.png); margin-left: 0px; }
+a.left:hover { background: url(../images/theme/client-previous-hover.png) }

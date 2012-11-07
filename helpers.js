@@ -47,6 +47,33 @@ dust.helpers['tabs'] = function(chunk, context, bodies) {
     })
 };
 
+dust.helpers['clients'] = function(chunk, context, bodies) {
+    return chunk.map(function(chunk) {
+        var eachSlice = function(object, size){
+            var index = - size,
+                slices = [];
+            while ((index += size) < object.length) {
+                slices.push(object.slice(index, index + size));
+            }
+            return slices;
+        };
+
+        models
+            .clients
+            .where('show', 1)
+            .sort({order: 1})
+            .exec(function(err, clients){
+                clients = eachSlice(clients, 4);
+
+                clients.forEach(function(items){
+                    context = context.push({items: items});
+                    chunk.render(bodies.block, context)
+                });
+                chunk.end();
+            })
+    })
+};
+
 
 dust.helpers['services'] = function(chunk, context, bodies) {
     return chunk.map(function(chunk) {
@@ -99,6 +126,32 @@ dust.helpers['footer'] = function(chunk, context, bodies) {
                 });
                 chunk.end();
             })
+    })
+};
+
+dust.helpers['main_title'] = function(chunk, context, bodies) {
+    return chunk.map(function(chunk) {
+        function getRandomInt (min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        models
+            .main_title
+            .where('show', 1)
+            .count(function(err, count){
+                models
+                    .main_title
+                    .where('show', 1)
+                    .limit(-1)
+                    .skip(getRandomInt(0, count - 1))
+                    .exec(function(err, titles){
+                        titles.forEach(function(title){
+                            context = context.push(title);
+                            chunk.render(bodies.block, context)
+                        });
+                        chunk.end();
+                    })
+            });
     })
 };
 
