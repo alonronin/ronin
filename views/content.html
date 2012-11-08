@@ -21,16 +21,25 @@
 
             <div class="inner-content clearfix">
 
-                <div class="cms-content clearfix">
+                <div class="cms-content">
+
+                    <div class="breadcrumbs">
+                        {>"views/partials/breadcrumbs.html"/}
+                    </div>
+
                     <ul>
-                        {#content}
+                        {@content}
+                        {#records}
                         <li>
                             <h2>{title}</h2>
 
-                            {?picture.url}<img src="{@cloudinary path="picture" width="150" height="150" crop="thumb"/}" alt="">{/picture.url}
+                            {?picture.url}
+                            <img class="cms-picture" src="{@cloudinary path="picture" width="910" height="250" crop="pad" /}" alt="{title}">
+                            {/picture.url}
 
                             <div class="cms-editor">{text|s}</div>
                         </li>
+                        {/records}
                         {/content}
                     </ul>
                 </div>

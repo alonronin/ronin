@@ -347,3 +347,46 @@ a.right:hover { background: url(../images/theme/client-next-hover.png) }
 /* left */
 a.left { background: url(../images/theme/client-previous-btn.png); margin-left: 0px; }
 a.left:hover { background: url(../images/theme/client-previous-hover.png) }
+
+div.cms-content {
+    padding: 25px 0;
+    font-family: Arial, sans-serif;
+}
+
+div.breadcrumbs {
+    font-size: 12px;
+    color: #000;
+    font-family: Arial, sans-serif;
+    margin-bottom: 30px;
+}
+
+.breadcrumbs a {
+    margin-left: 10px;
+    padding-left: 20px;
+    text-decoration: none;
+    background: url(../images/theme/client-previous-hover.png) no-repeat left;
+    color: #000;
+    opacity: 0.6;
+}
+
+div.cms-editor {
+    font-size: 16px;
+}
+
+div.cms-content h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #393;
+}
+
+div.cms-editor p {
+    margin-bottom: 20px;
+    line-height: 20px !important;
+}
+
+img.cms-picture {
+    display: block;
+    margin: 20px 0;
+/*    -webkit-border-radius: 10px;
+    box-shadow: 0 0 8px #888;*/
+}
