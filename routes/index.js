@@ -81,6 +81,15 @@ module.exports = function(app){
             }
         });
 
+    app.get('/contacts', function(req, res){
+        models
+            .contact
+            .find()
+            .exec(function(err, contacts){
+                res.json(err || contacts)
+            })
+    });
+
     //cms rules
     app.get('*', [config, page, crumbs], function(req, res, next){
         if(req.page){
@@ -94,6 +103,21 @@ module.exports = function(app){
         }
         else
             next();
+
+    });
+
+    app.post('/thank-you', [config], function(req, res){
+
+        var o = req.body;
+        o.req = {headers: req.headers, session: req.session, ip: req.ip};
+        o.date = Date.now();
+
+        var contact = new models.contact(o);
+
+        contact.save(function(err, doc){
+            res.json({success: (err ? false : true), message: req.config[(err ? 'contact_fail' : 'contact_success')]});
+
+        });
 
     });
 

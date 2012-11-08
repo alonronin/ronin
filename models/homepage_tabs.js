@@ -7,7 +7,7 @@ var homepageTabsSchema = new Schema({
     sub_title: { type: String },
     icon: { type: String, enum: ['copywriting', 'product-design', 'interface-design', 'user-research', 'usability-testing', 'prototyping'] },
     text: { type: Schema.Types.Html },
-    button: { text: String, url: String },
+    button: { text: String, url: String, show: { type: Boolean, default: true} },
     order: { type: Number, editable: false },
     show: { type: Boolean, 'default': true }
 });

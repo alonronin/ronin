@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 	//JS Code Secific to Home Page Goes Here
 	
 	$('div#banner .slides').cycle({
@@ -18,5 +18,4 @@ $(document).ready(function() {
     $('.tabs').tabs();
 
     $('#scrollable').scrollable()
-
 });

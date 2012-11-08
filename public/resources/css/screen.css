@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5, h6, p, li { line-height:1.0em; }
 /*---- Banner - Description---*/
 #banner .description { float:right; width:330px; padding-top:20px; }
 #banner .description h2{ font-size:36px; line-height:38px; color:#e1e1e1; margin-bottom:21px; text-shadow:-1px -1px #2a2a2a;}
-#banner .description p{ font-size:16px; line-height:22px; color:#939393; margin-bottom:29px; }
+#banner .description p{ font-size:16px; line-height:22px; color:#939393; margin-bottom:29px; margin-left: 30px;}
 #banner .description a{ margin-bottom:59px; height:37px; }
 
 
@@ -168,16 +168,7 @@ div#banner div.wrapper a.next-btn:hover{ background:url(../images/theme/previous
 #services .tab-content .testimonial .bottom{ background:url(../images/theme/box1.png) no-repeat left bottom; height:42px; margin-bottom:-39px; position:relative;}
 
 /*---- Clients----*/
-#clients{ position:relative; overflow: hidden; top: -15px;}
-
-#clients a.previous-btn ,#clients a.next-btn{ cursor: pointer; display:block; top:65px; position:absolute; height:13px; width:9px; z-index: 1000}
-#clients a.previous-btn:hover ,#clients a.next-btn:hover{ text-decoration:none;}
-
-#clients a.previous-btn{ background:url(../images/theme/client-previous-btn.png) no-repeat left top; left:0; }
-#clients a.previous-btn:hover { background:url(../images/theme/client-previous-hover.png) no-repeat left top;}
-
-#clients a.next-btn{ background:url(../images/theme/client-next-btn.png) no-repeat right top; right:0;}
-#clients a.next-btn:hover{ background:url(../images/theme/client-next-hover.png) no-repeat right top;}
+#clients{ position:relative; overflow: hidden; top: -15px; padding-left: 20px; height: 150px;}
 
 /*---- Contact----*/
 #content .contact{ padding:38px 0; background:none; box-shadow:none;}
@@ -250,7 +241,8 @@ div#banner div.wrapper a.next-btn:hover{ background:url(../images/theme/previous
 
 #dashboard .contact-form ul li span.sent-btn{ background:url(../images/theme/sent-btn.png) no-repeat left top; height:33px; width:82px;  display:block;  }
 #dashboard .contact-form ul li input.sent-btn{ background:transparent; border:none; color:#8a8a8a; font-size:13px; line-height:33px; height:33px; width:82px; cursor:pointer; padding:0;}
-
+#dashboard .contact-form div { font-size: 14px; color: #393; line-height: 16px;}
+#dashboard .contact-form div.fail {color: #942a25; font-weight: bold;}
 /*---- Footer ---*/
 #footer p.copy-right ,#footer .sociable span{ float:right; font-size:11px; color:#646464; line-height:15px; font-weight:normal;}
 
@@ -301,8 +293,8 @@ div.editor p{
     /* required settings */
     position:relative;
     overflow:hidden;
-    width: 871px;
-    height:200px;
+    width: 832px;
+    height:143px;
     direction: ltr;
 }
 
@@ -321,15 +313,13 @@ div.editor p{
 
 .items div {
     float:left;
-    width:871px;
+    width:840px;
 }
 
 /* single scrollable item */
 .scrollable img {
     float:left;
-    margin:20px 5px 20px 21px;
-    width:190px;
-    height:150px;
+    margin:20px;
 }
 
 /* this makes it possible to add next button beside scrollable */
@@ -344,7 +334,7 @@ a.browse {
     width:9px;
     height:13px;
     float:left;
-    margin:87px 10px;
+    margin:60px 10px;
     cursor:pointer;
     font-size:1px;
 }

@@ -2,9 +2,15 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.Types.ObjectId;
 
+var metaSchema = new Schema({
+    name: String,
+    content: {type: Schema.Types.Text}
+});
+
 var navigationSchema = new Schema({
     parent: { type: ObjectId, ref: 'navigation'},
     title: { type: String, required: true },
+    meta: [metaSchema],
     url: { type: String, trim: true, lowercase: true},
     template: { type: ObjectId, ref: 'template'},
     order: { type: Number, editable: false },

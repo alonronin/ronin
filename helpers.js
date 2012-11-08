@@ -63,7 +63,7 @@ dust.helpers['clients'] = function(chunk, context, bodies) {
             .where('show', 1)
             .sort({order: 1})
             .exec(function(err, clients){
-                clients = eachSlice(clients, 4);
+                clients = eachSlice(clients, 6);
 
                 clients.forEach(function(items){
                     context = context.push({items: items});
