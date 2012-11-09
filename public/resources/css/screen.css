@@ -37,14 +37,14 @@ h1, h2, h3, h4, h5, h6, p, li { line-height:1.0em; }
 .wrapper{ width:910px; margin:0 auto; padding:0 35px; direction: rtl; }
 
 /*---- Header ----*/
-#header{ margin-bottom:51px; }
+#header{ margin-bottom:10px; }
 #header .wrapper { background:url(../images/theme/header/border-bg.gif) repeat-x right bottom; }
 
 /*---- Main Navigation ----*/
 #main-navigation { float:right; }
 
 /*---- Banner ----*/
-#banner {  margin-bottom:8px; }
+#banner {  margin-bottom:8px; padding-top: 41px; }
 #banner .wrapper {position:relative;}
 
 /*---- Content ----*/
@@ -370,7 +370,9 @@ div.breadcrumbs {
 }
 
 div.cms-editor {
-    font-size: 16px;
+    font-size: 14px;
+    color: #737373;
+    line-height: 20px !important;
 }
 
 div.cms-content h2 {
@@ -379,14 +381,122 @@ div.cms-content h2 {
     color: #393;
 }
 
+div.cms-content h3 {
+    font-size: 18px;
+    color: #494949
+}
+
 div.cms-editor p {
     margin-bottom: 20px;
     line-height: 20px !important;
 }
 
+div.cms-picture {
+    margin: 20px 0;
+    box-shadow: 0 20px 60px #ebebeb;
+}
+
+div.cms-picture div.title {
+    height: 50px;
+    font-size: 14px;
+    line-height: 50px;
+    padding: 0 20px;
+    color: #b3b1b1;
+    border-bottom: 1px solid #ebebeb;
+}
+
 img.cms-picture {
     display: block;
-    margin: 20px 0;
 /*    -webkit-border-radius: 10px;
     box-shadow: 0 0 8px #888;*/
 }
+
+li.project {
+    clear: both;
+    margin-bottom: 30px;
+    box-shadow: 0 30px 60px #ebebeb;
+    height: 261px;
+}
+
+li.project img.project-image {
+    width: 550px;
+    height: 261px;
+    float: right;
+    margin-left: 15px;
+}
+
+li.project div.left {
+    float: right;
+    width: 300px;
+}
+
+li.project div.left div.seperator {
+    padding: 25px 0;
+    line-height: 2px;
+    height: 2px;
+    clear: both;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin: 0;
+}
+
+li.project div.left div.seperator .primary {
+    height: 3px;
+    width: 70px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -1px;
+    z-index: 5;
+    background-color: #393;
+}
+
+li.project div.left div.seperator .hr {
+    width: 100%;
+    border-top: 1px solid;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 1;
+    border-color: #E8E8E8;
+}
+
+li.project div.left a {
+    float: left;
+    color: #393;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px dotted #393;
+    padding-bottom: 5px;
+}
+
+li.project div.left a:hover {
+    border: 0;
+}
+
+div.pagination {
+    clear: both;
+    font-size: 12px;
+}
+
+div.pagination a {
+    color: #393;
+    margin: 0 5px;
+}
+
+div.pagination span {
+    margin: 0 5px;
+    color: #333;
+}
+
+::selection {
+    background: #393; /* Safari */
+    color: white;
+}
+::-moz-selection {
+    background: #393; /* Firefox */
+    color: white;
+}
+

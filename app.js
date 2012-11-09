@@ -6,6 +6,9 @@ var express = require('express'),
     http = require('http'),
     path = require('path');
 
+//add some sugar baby
+require('sugar');
+
 var app = module.exports = express();
 
 app.configure(function(){
@@ -41,7 +44,9 @@ app.configure('development', function(){
     app.use(express.errorHandler());
 });
 
-require('./helpers');
+require('./dust/helpers');
+require('./dust/filters');
+require('./mongoose/helpers');
 require('mongoose').connect(app.get('mongo'));
 require('./routes')(app);
 

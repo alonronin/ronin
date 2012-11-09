@@ -1,7 +1,7 @@
 var dust = require('dustjs-helpers'),
-    models = require('./models');
+    models = require('../models');
 
-dust.helpers["cloudinary"] = function (chunk, context, bodies, params) {
+dust.helpers['cloudinary'] = function (chunk, context, bodies, params) {
     context = params && params.path ? context.get(params.path) : context.current();
 
     if(!(context && context.public_id)) return chunk;
@@ -49,24 +49,15 @@ dust.helpers['tabs'] = function(chunk, context, bodies) {
 
 dust.helpers['clients'] = function(chunk, context, bodies) {
     return chunk.map(function(chunk) {
-        var eachSlice = function(object, size){
-            var index = - size,
-                slices = [];
-            while ((index += size) < object.length) {
-                slices.push(object.slice(index, index + size));
-            }
-            return slices;
-        };
-
         models
             .clients
             .where('show', 1)
             .sort({order: 1})
             .exec(function(err, clients){
-                clients = eachSlice(clients, 6);
+                clients = clients.inGroupsOf(6);
 
                 clients.forEach(function(items){
-                    context = context.push({items: items});
+                    context = context.push({items: items.compact()});
                     chunk.render(bodies.block, context)
                 });
                 chunk.end();
@@ -131,10 +122,6 @@ dust.helpers['footer'] = function(chunk, context, bodies) {
 
 dust.helpers['main_title'] = function(chunk, context, bodies) {
     return chunk.map(function(chunk) {
-        function getRandomInt (min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
         models
             .main_title
             .where('show', 1)
@@ -143,7 +130,7 @@ dust.helpers['main_title'] = function(chunk, context, bodies) {
                     .main_title
                     .where('show', 1)
                     .limit(-1)
-                    .skip(getRandomInt(0, count - 1))
+                    .skip(Number.random(count - 1))
                     .exec(function(err, titles){
                         titles.forEach(function(title){
                             context = context.push(title);
@@ -179,45 +166,65 @@ dust.helpers['menu'] = function(chunk, context, bodies) {
 };
 
 dust.helpers['content'] = function(chunk, context, bodies, params) {
+    params || (params = {});
+
     var config = context.get('config'),
         page = context.get('page'),
-        current_page = (Math.abs(Number(page.query.page)) || 1) - 1,
-        records_in_page = (params && params.records_in_page) || 20,
         records = [];
 
     return chunk.map(function(chunk) {
-        models
-            .content
-            .where('show', true)
-            .where('navigation', page._id)
-            .count(
-                function(err, count){
-                    context = context.push({count: count});
+        var query = models
+                .content
+                    .where('show', true)
+                    .where('navigation', page._id)
+                    .sort({order: 1})
+                    .populate('url');
 
-                    models
-                        .content
-                        .where('show', true)
-                        .where('navigation', page._id)
-                        .sort({order: 1})
-                        .populate('url')
-                        .skip(current_page * records_in_page)
-                        .limit(records_in_page)
-                        .exec(function(err, content){
-                            content.forEach(function(item){
-                                //rendering custom context from config
-                                dust.loadSource(dust.compile(item.text, "content_template"));
-                                dust.render('content_template', config, function(err, text){
-                                    item.text = text;
-                                    records.push(item);
-                                });
-                            });
+        models.content.paginate(query, page.query.page, params.records, function(err, content, count, pages){
 
-                            context = context.push({records: records});
-                            chunk.render(bodies.block, context);
+            content.forEach(function(item){
+                //rendering custom context from config
+                dust.loadSource(dust.compile(item.text, "content_template"));
+                dust.render('content_template', config, function(err, text){
+                    item.text = text;
+                    records.push(item);
+                });
+            });
 
-                            chunk.end();
-                        });
-                }
-            );
+            context = context.push({pages: pages, count: count, records: records});
+            chunk.render(bodies.block, context);
+
+            chunk.end();
+
+        });
     })
+};
+dust.helpers.truncate = function(chunk, context, bodies, params){
+
+    var options = {
+        value: '',
+        strip: true,
+        length: 20,
+        split: true,
+        from: 'right',
+        ellipsis: '...'
+    };
+
+    Object.merge(options, params);
+
+    options.split = (options.split != 'false');
+
+    var value = options.value;
+
+    if(options.strip)
+        value = value.stripTags();
+
+    value = value.truncate(options.length, options.split, options.from, options.ellipsis);
+
+    return chunk.write(value);
+};
+
+dust.helpers.paging = function(chunk, context, bodies, params){
+    console.log(params);
+    return chunk;
 };

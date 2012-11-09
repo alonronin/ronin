@@ -1,10 +1,11 @@
 $(function(){
     $('.contact-form form').on('submit', function(e){
         var self = this;
+        $(self).find(':submit').prop({disabled: true});
 
         e.preventDefault();
 
-        var o = $(this).serializeObject();
+        var o = $(self).serializeObject();
 
         $.postJSON('/thank-you', o).done(function(o){
             $(self).replaceWith($('<div></div>').addClass((o.success ? null : 'fail')).text(o.message));

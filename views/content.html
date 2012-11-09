@@ -1,4 +1,5 @@
 <!doctype html>
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -34,7 +35,10 @@
                             <h2>{title}</h2>
 
                             {?picture.url}
-                            <img class="cms-picture" src="{@cloudinary path="picture" width="910" height="250" crop="pad" /}" alt="{title}">
+                            <div class="cms-picture">
+                                <img src="{@cloudinary path="picture" width="910" height="250" crop="pad" /}" alt="{title}">
+                                <div class="title">{title}</div>
+                            </div>
                             {/picture.url}
 
                             <div class="cms-editor">{text|s}</div>
@@ -44,7 +48,8 @@
                     </ul>
                 </div>
 
-                <span class="arrow1">&nbsp;</span> </div>
+                <span class="arrow1">&nbsp;</span>
+            </div>
 
             {>"views/partials/phone.html"/}
         </div>
@@ -59,9 +64,6 @@
 
 <!-- SCRIPTS -->
 {>"views/partials/scripts.html"/}
-
-<!-- CUSTOM JS CODE SPECIFIC TO THIS PAGE -->
-<script src="resources/js/home.js" type="text/javascript"></script>
 
 </body>
 </html>
