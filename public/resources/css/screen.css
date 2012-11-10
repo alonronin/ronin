@@ -479,16 +479,19 @@ li.project div.left a:hover {
 div.pagination {
     clear: both;
     font-size: 12px;
+    direction: rtl;
 }
 
 div.pagination a {
     color: #393;
     margin: 0 5px;
+    float: right;
 }
 
 div.pagination span {
     margin: 0 5px;
     color: #333;
+    float: right;
 }
 
 ::selection {

@@ -170,7 +170,7 @@ dust.helpers['content'] = function(chunk, context, bodies, params) {
 
     var config = context.get('config'),
         page = context.get('page'),
-        records = [];
+        items = [];
 
     return chunk.map(function(chunk) {
         var query = models
@@ -187,11 +187,11 @@ dust.helpers['content'] = function(chunk, context, bodies, params) {
                 dust.loadSource(dust.compile(item.text, "content_template"));
                 dust.render('content_template', config, function(err, text){
                     item.text = text;
-                    records.push(item);
+                    items.push(item);
                 });
             });
 
-            context = context.push({pages: pages, count: count, records: records});
+            context = context.push({pages: pages || 0, count: count, items: items, records: params.records});
             chunk.render(bodies.block, context);
 
             chunk.end();
@@ -199,11 +199,9 @@ dust.helpers['content'] = function(chunk, context, bodies, params) {
         });
     })
 };
-dust.helpers.truncate = function(chunk, context, bodies, params){
 
+dust.helpers.truncate = function(chunk, context, bodies, params) {
     var options = {
-        value: '',
-        strip: true,
         length: 20,
         split: true,
         from: 'right',
@@ -214,17 +212,92 @@ dust.helpers.truncate = function(chunk, context, bodies, params){
 
     options.split = (options.split != 'false');
 
-    var value = options.value;
-
-    if(options.strip)
-        value = value.stripTags();
-
-    value = value.truncate(options.length, options.split, options.from, options.ellipsis);
-
-    return chunk.write(value);
+    return chunk.tap(function(data) {
+        return data.truncate(options.length, options.split, options.from, options.ellipsis);
+    }).render(bodies.block, context).untap();
 };
 
 dust.helpers.paging = function(chunk, context, bodies, params){
-    console.log(params);
-    return chunk;
+    params || (params = {});
+    var page = context.get('page');
+
+    var count = params.count;
+    var display = params.display || 5;
+    var records = params.records;
+    var current = page.query.page && page.query.page.toNumber().abs() || 1;
+    var start, end, pages;
+    var old_display = (display % 2 == 0) ? 1 : 0, i, half;
+    var result = {
+        prelink : params.link || '?page=',
+        current : current,
+        previous : null,
+        next : null,
+        first : null,
+        last : null,
+        range : [],
+        from : null,
+        to : null,
+        total : count,
+        pages : null
+    };
+    /* zero division; negative */
+    if(records <= 0) {
+        return result;
+    }
+    pages = (count / records).ceil();
+    result.pages = pages;
+    if(pages < 2) {
+        result.from = 1;
+        result.to = count;
+        return result;
+    }
+
+    if(current > pages) {
+        current = pages;
+        result.current = current;
+    }
+    half = (display / 2).floor();
+    start = current - half;
+    end = current + half - old_display;
+
+    if(start < 1) {
+        start = 1;
+        end = start + display;
+        if(end > pages) {
+            end = pages;
+        }
+    }
+
+    if(end > pages) {
+        end = pages;
+        start = end - display + 1;
+        if(start < 1) {
+            start = 1;
+        }
+    }
+
+    for( i = start; i <= end; i++) {
+        result.range.push(i);
+    }
+
+    if(current > 1) {
+        result.first = 1;
+        result.previous = current - 1;
+    }
+
+    if(current < pages) {
+        result.last = pages;
+        result.next = current + 1;
+    }
+
+    result.from = (current - 1) * records + 1;
+    if(current == pages) {
+        result.to = count;
+    } else {
+        result.to = result.from + records - 1;
+    }
+
+    return chunk.render(bodies.block, context.push(result));
 };
+
+

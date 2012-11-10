@@ -27,10 +27,11 @@
                     <div class="breadcrumbs">
                         {>"views/partials/breadcrumbs.html"/}
                     </div>
-                    {@content records="1"}
+
+                    {@content records=5}
 
                     <ul>
-                        {#records}
+                        {#items}
                         <li class="project">
                             <img class="project-image" src="{@cloudinary path="picture" width="550" height="261" crop="fill" gravity="north" /}" alt="{title}">
 
@@ -43,7 +44,7 @@
                                 </div>
 
                                 <div class="cms-editor">
-                                    {@truncate value=text split="false" length="150" /}
+                                    {@truncate split="false" length="150"}{text|st|s}{/truncate}
                                 </div>
 
                                 <div class="seperator">
@@ -56,12 +57,25 @@
 
                             <div class="clear"></div>
                         </li>
-                        {/records}
+                        {/items}
                     </ul>
 
                     <div class="pagination">
-                        {@paging count=count pages=pages next=config.next}
-                        {/paging}
+                    {@paging count=count records=records}
+                        {?previous}
+                        <a href="{prelink}{previous}">{#config}{prev}{/config}</a>
+                        {/previous}
+                        {#range}
+                        {@eq key=current value=. type="number"}
+                        <span>{.}</span>
+                        {:else}
+                        <a href="{prelink}{.}">{.}</a>
+                        {/eq}
+                        {/range}
+                        {?next}
+                        <a href="{prelink}{next}">{#config}{next}{/config}</a>
+                        {/next}
+                    {/paging}
                     </div>
                     {/content}
                 </div>

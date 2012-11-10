@@ -10,7 +10,7 @@ mongoose.Model.paginate = function(query, page, records, callback){
         if(err) return callback(err);
 
         query.count(function(err, count){
-            callback(err, results, count, (count / records).floor());
+            callback(err, results, count, (count / records).ceil());
         });
 
     });
