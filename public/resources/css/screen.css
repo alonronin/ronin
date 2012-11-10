@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6, p, li { line-height:1.0em; }
 /*---- Controls---*/
 #banner .slides { position: relative; width: 870px; height: 331px; overflow: hidden; }
 #banner .slide { position:absolute; width: 870px; height: 331px; overflow: hidden; }
-#banner .controls{ position:absolute; right:37px; bottom:40px; width:48px; z-index:9999; }
+#banner .controls{ position:absolute; right:37px; bottom:40px; z-index:9999; }
 #banner .controls a{ float:right; background:url(../images/theme/controls.png) no-repeat -16px top; height:11px; width:10px; display:block; margin-left:6px;}
 #banner .controls a.activeSlide ,#banner .controls a:hover{ background-position:0 0; text-decoration:none;}
 
