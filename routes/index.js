@@ -99,6 +99,8 @@ module.exports = function(app){
 
             o.config = req.config || {};
             o.crumbs = req.crumbs || {};
+
+            res.locals.development = app.get('env') == "development";
             res.render(req.page.template.title, o);
         }
         else
