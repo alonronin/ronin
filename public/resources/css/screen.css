@@ -90,18 +90,18 @@ h1, h2, h3, h4, h5, h6, p, li { line-height:1.0em; }
 #main-navigation ul li a:hover,#main-navigation ul li.active a{ color:#fff; text-shadow:1px -1px #212222; background:url(../images/theme/header/nav-hover-bg.png) repeat-x left top; }
 
 /*---- Banner - Description---*/
-#banner .description { float:right; width:330px; padding-top:20px; }
+#banner .description { float:right; width:330px; padding:20px 20px 0 0; }
 #banner .description h2{ font-size:36px; line-height:38px; color:#e1e1e1; margin-bottom:21px; text-shadow:-1px -1px #2a2a2a;}
 #banner .description p{ font-size:16px; line-height:22px; color:#939393; margin-bottom:29px; margin-left: 30px;}
 #banner .description a{ margin-bottom:59px; height:37px; }
 
 
 /*---- Banner - Image---*/
-#banner .image { float:right; width:540px;; }
+#banner .image { float:right; width:540px; margin-left: 20px; }
 
 /*---- Controls---*/
-#banner .slides { position: relative; width: 870px; height: 331px; overflow: hidden; }
-#banner .slide { position:absolute; width: 870px; height: 331px; overflow: hidden; }
+#banner .slides { position: relative; width: 910px; height: 331px; overflow: hidden; }
+#banner .slide { position:absolute; width: 910px; height: 331px; overflow: hidden; }
 #banner .controls{ position:absolute; right:37px; bottom:40px; z-index:9999; }
 #banner .controls a{ float:right; background:url(../images/theme/controls.png) no-repeat -16px top; height:11px; width:10px; display:block; margin-left:6px;}
 #banner .controls a.activeSlide ,#banner .controls a:hover{ background-position:0 0; text-decoration:none;}

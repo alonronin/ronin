@@ -1,0 +1,8 @@
+.glowable {
+    padding: 10px !important; margin: -10px !important;
+    border-radius: 3px;
+    -webkit-transition: box-shadow 900ms;
+}
+.glowable.glow {
+    box-shadow: gray 0 0 10px 0;
+}

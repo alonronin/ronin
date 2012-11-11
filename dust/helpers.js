@@ -222,7 +222,6 @@ dust.helpers.truncate = function(chunk, context, bodies, params) {
         from: 'right',
         ellipsis: '...'
     };
-
     Object.merge(options, params);
 
     options.split = (options.split != 'false');
@@ -232,6 +231,7 @@ dust.helpers.truncate = function(chunk, context, bodies, params) {
     }).render(bodies.block, context).untap();
 };
 
+// TODO: it's ugly now
 dust.helpers.paging = function(chunk, context, bodies, params){
     params || (params = {});
     var page = context.get('page');

@@ -6,7 +6,7 @@ var express = require('express'),
     http = require('http'),
     path = require('path');
 
-//add some sugar baby
+// add some sugar baby
 require('sugar');
 
 var app = module.exports = express();
