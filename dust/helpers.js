@@ -47,6 +47,21 @@ dust.helpers['tabs'] = function(chunk, context, bodies) {
     })
 };
 
+dust.helpers['social'] = function(chunk, context, bodies) {
+    return chunk.map(function(chunk) {
+        models
+            .social
+            .where('show', 1)
+            .sort({order: 1})
+            .exec(function(err, socials){
+                context = context.push({links: socials});
+                chunk.render(bodies.block, context);
+
+                chunk.end();
+            })
+    })
+};
+
 dust.helpers['clients'] = function(chunk, context, bodies) {
     return chunk.map(function(chunk) {
         models

@@ -2,12 +2,15 @@
     <div class="wrapper clearfix">
         <p class="copy-right">{config.copyright}</p>
         <section class="sociable">
-            <span>{config.social}</span>
-            <a href="#" class="twitter"></a>
-            <a href="#" class="facebook"></a>
-            <a href="#" class="vimeo"></a>
-            <a href="#" class="youtube"></a>
-            <a href="#" class="skype"></a>
+
+            {@social:config}
+            {?links}
+            <span>{social}</span>
+            {#links}
+            <a href="{url}" class="{icon}"></a>
+            {/links}
+            {/links}
+            {/social}
         </section>
     </div>
 </footer>

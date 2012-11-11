@@ -8,9 +8,7 @@
                 <span class="textbox">
                     <input type="text"
                            name="name"
-                           onFocus="if(this.value=='{config.contact_name}') this.value='';"
-                           onBlur="if(this.value=='') this.value='{config.contact_name}';"
-                           value="{config.contact_name}"
+                           placeholder="{config.contact_name}"
                            class="textbox">
                 </span>
             </li>
@@ -18,9 +16,7 @@
                 <span class="textbox">
                     <input type="text"
                            name="email"
-                           onFocus="if(this.value=='{config.contact_email}') this.value='';"
-                           onBlur="if(this.value=='') this.value='{config.contact_email}';"
-                           value="{config.contact_email}"
+                           placeholder="{config.contact_email}"
                            class="textbox">
                 </span>
             </li>
@@ -28,17 +24,14 @@
                 <span class="textbox">
                     <input type="text"
                            name="phone"
-                           onFocus="if(this.value=='{config.contact_phone}') this.value='';"
-                           onBlur="if(this.value=='') this.value='{config.contact_phone}';"
-                           value="{config.contact_phone}"
+                           placeholder="{config.contact_phone}"
                            class="textbox">
                 </span>
             </li>
             <li>
                 <span class="textarea">
                     <textarea name="message" rows="4" cols="5" class="textarea"
-                              onFocus="if(this.value=='{config.contact_text}') this.value='';"
-                              onBlur="if(this.value=='') this.value='{config.contact_text}';">{config.contact_text}</textarea>
+                              placeholder="{config.contact_text}"></textarea>
                 </span>
             </li>
             <li>

@@ -108,17 +108,26 @@ module.exports = function(app){
 
     app.post('/thank-you', [config], function(req, res){
 
-        var o = req.body;
-        o.req = {headers: req.headers, session: req.session, ip: req.ip};
-        o.date = Date.now();
+        var o = req.body,
+            save = false;
 
-        var contact = new models.contact(o);
-
-        contact.save(function(err, doc){
-            res.json({success: (err ? false : true), message: req.config[(err ? 'contact_fail' : 'contact_success')]});
-
+        Object.each(o, function(key, value){
+            o[key] = value.stripTags().trim();
+            if(o[key].length) save = true;
         });
 
+        if(save){
+            o.req = {headers: req.headers, session: req.session, ip: req.ip};
+            o.date = Date.now();
+
+            var contact = new models.contact(o);
+
+            contact.save(function(err, doc){
+                res.json({success: (err ? false : true), message: req.config[(err ? 'contact_fail' : 'contact_success')]});
+            });
+        }else{
+            res.json({success: true, message: req.config.contact_success});
+        }
     });
 
 };

@@ -390,6 +390,17 @@ div.cms-editor p {
     margin-bottom: 20px;
     line-height: 20px !important;
 }
+div.cms-editor a{
+    color: #393;
+    text-decoration: none;
+    border-bottom: 1px dotted #393;
+}
+
+div.cms-editor a:hover {
+    border: 0;
+    text-decoration: none;
+}
+
 
 div.cms-picture {
     margin: 20px 0;
@@ -503,3 +514,9 @@ div.pagination span {
     color: white;
 }
 
+.placeholder {
+    color: #999;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+}
