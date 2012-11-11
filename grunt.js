@@ -6,6 +6,7 @@ module.exports = function(grunt) {
                     'public/resources/js/jquery.restjson.js',
                     'public/resources/js/jquery.serializeobject.js',
                     'public/resources/js/css_browser_selector.js',
+                    'public/resources/js/script.js',
                     'public/resources/js/jquery.cycle.all.min.js',
                     'public/resources/js/jquery.ui.core.min.js',
                     'public/resources/js/jquery.ui.widget.min.js',
