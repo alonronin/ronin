@@ -25,7 +25,7 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.cookieParser('magical secret ronin'));
-    app.use(express.cookieSession({cookie: { maxAge: 60 * 1000 * 20 }}));
+    app.use(express.cookieSession({cookie: { maxAge: (20).minutes() }}));
 
     app.use(express.static(path.join(__dirname, 'public')));
 
@@ -35,7 +35,7 @@ app.configure(function(){
 
     app.use(function(req, res, next){
         res.status(404);
-        res.render('404', {title: 'The page cannot be found', content: 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.'});
+        res.render('404', {title: 'The page cannot be found', content: '<p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p><hr><p>Please try the following:</p><ul><li>Make sure that the Web site address displayed in the address bar of your browser is spelled and formatted correctly.</li><li>If you reached this page by clicking a link, contact the Web site administrator to alert them that the link is incorrectly formatted.</li><li>Click the <a href="javascript:history.back(1)">Back</a> button to try another link.</li></ul><h2>HTTP Error 404 - File or directory not found.</h2><hr>'});
     })
 });
 
