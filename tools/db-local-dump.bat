@@ -1,2 +1,2 @@
 cd ..
-mongodump -d ronin -o dump
+mongodump -d roninil -o dump

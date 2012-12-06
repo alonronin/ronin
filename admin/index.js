@@ -7,8 +7,8 @@ module.exports = function (app) {
 
     var admin = admin_forms.createAdmin(app, {root:'admin'});
 
-    admin.setAdminTitle('RONIN');
-    admin.ensureUserExists('admin', 'admin');
+    admin.setAdminTitle(app.get('site'));
+    admin.ensureUserExists(app.get('admin').username, app.get('admin').password);
 
     for(var name in models){
         var model = models[name];

@@ -13,8 +13,10 @@ var app = module.exports = express();
 
 app.configure(function(){
     app.set('cloudinary', process.env.CLOUDINARY_URL);
-    app.set('port', process.env.PORT || 80);
-    app.set('mongo', process.env.MONGOLAB_URI || 'mongodb://localhost/ronin');
+    app.set('port', process.env.PORT);
+    app.set('mongo', process.env.MONGOLAB_URI);
+    app.set('admin', {username: 'admin', password: process.env.ADMIN_PASSWORD});
+    app.set('site', 'RONIN');
 
     app.engine('html', require('consolidate').dust);
     app.set('view engine', 'html');

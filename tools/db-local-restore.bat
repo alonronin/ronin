@@ -1,3 +1,3 @@
 cd ..
-mongorestore -d ronin --drop dump/ronin
+mongorestore -d roninil --drop dump/roninil
 pause

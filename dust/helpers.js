@@ -196,6 +196,7 @@ dust.helpers['content'] = function(chunk, context, bodies, params) {
                     .populate('url');
 
         models.content.paginate(query, page.query.page, params.records, function(err, content, count, pages){
+            params.records || (params.records = count);
 
             content.forEach(function(item){
                 //rendering custom context from config
@@ -257,14 +258,14 @@ dust.helpers.paging = function(chunk, context, bodies, params){
     };
     /* zero division; negative */
     if(records <= 0) {
-        return result;
+        return chunk.render(bodies.block, context.push(result));
     }
     pages = (count / records).ceil();
     result.pages = pages;
     if(pages < 2) {
         result.from = 1;
         result.to = count;
-        return result;
+        return chunk.render(bodies.block, context.push(result));
     }
 
     if(current > pages) {
