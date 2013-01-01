@@ -200,11 +200,15 @@ dust.helpers['content'] = function(chunk, context, bodies, params) {
 
             content.forEach(function(item){
                 //rendering custom context from config
-                dust.loadSource(dust.compile(item.text, "content_template"));
-                dust.render('content_template', config, function(err, text){
-                    item.text = text;
+                if(item.text) {
+                    dust.loadSource(dust.compile(item.text, "content_template"));
+                    dust.render('content_template', config, function(err, text){
+                        item.text = text;
+                        items.push(item);
+                    });
+                }else{
                     items.push(item);
-                });
+                }
             });
 
             context = context.push({pages: pages || 0, count: count, items: items, records: params.records});
