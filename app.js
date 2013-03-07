@@ -4,7 +4,12 @@
 
 var express = require('express'),
     http = require('http'),
-    path = require('path');
+    path = require('path'),
+    logger = require('./logger'),
+    admin = require('./admin'),
+    mongoose = require('mongoose');
+
+admin.mongoose_module = mongoose;
 
 // add some sugar baby
 require('sugar');
@@ -15,12 +20,15 @@ app.configure(function(){
     app.set('cloudinary', process.env.CLOUDINARY_URL);
     app.set('port', process.env.PORT);
     app.set('mongo', process.env.MONGOLAB_URI);
+    app.set('sendgrid', { user: process.env.SENDGRID_USERNAME, key: process.env.SENDGRID_PASSWORD });
     app.set('admin', {username: 'admin', password: process.env.ADMIN_PASSWORD});
     app.set('site', 'RONIN');
 
     app.engine('html', require('consolidate').dust);
     app.set('view engine', 'html');
     app.set('views', path.join(__dirname, 'views'));
+
+    app.use(logger.domain_wrapper_middleware);
 
     app.use(express.compress());
     app.use(express.favicon());
@@ -31,7 +39,7 @@ app.configure(function(){
 
     app.use(express.static(path.join(__dirname, 'public')));
 
-    require('./admin')(app);
+    admin(app, express, mongoose);
 
     app.use(app.router);
 
@@ -46,10 +54,11 @@ app.configure('development', function(){
     app.use(express.errorHandler());
 });
 
+mongoose.connect(app.get('mongo'));
+
 require('./dust/helpers');
 require('./dust/filters');
 require('./mongoose/helpers');
-require('mongoose').connect(app.get('mongo'));
 require('./routes')(app);
 
 http.createServer(app).listen(app.get('port'), function(){

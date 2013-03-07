@@ -1,4 +1,5 @@
-var models = require('../models');
+var models = require('../models'),
+    dust = require('dustjs-linkedin');
 
 /*
  middle-wares
@@ -86,7 +87,7 @@ module.exports = function(app){
             .contact
             .find()
             .exec(function(err, contacts){
-                res.json(err || contacts)
+                res.send(err || contacts)
             })
     });
 
@@ -108,25 +109,43 @@ module.exports = function(app){
 
     });
 
+    var mail = require('../mail');
+    mail.init(app.get('sendgrid'));
+
     app.post('/thank-you', [config], function(req, res){
 
         var o = req.body,
-            save = false;
+            send = false;
 
         Object.each(o, function(key, value){
             o[key] = value.stripTags().trim();
-            if(o[key].length) save = true;
+            console.log(o[key].length);
+            if(o[key].length) send = true;
         });
 
-        if(save){
+        if(send){
             o.req = {headers: req.headers, session: req.session, ip: req.ip};
-            o.date = Date.now();
+            o.date = new Date();
 
-            var contact = new models.contact(o);
+            var message = {};
+            message.to = req.config.email;
+            message.from = o.email || req.config.email;
+            message.subject = req.config.email_subject;
 
-            contact.save(function(err, doc){
-                res.json({success: (err ? false : true), message: req.config[(err ? 'contact_fail' : 'contact_success')]});
+            dust.loadSource(dust.compile(req.config.email_template, "email_template"));
+            dust.render('email_template', o, function(err, text){
+                message.html = text;
             });
+
+            //console.log('Sending mail', message);
+            var contact = new models.contact(o);
+            contact.save();
+
+            mail.send(message, function(err, message) {
+                var success = !err;
+                res.json({success: success, message: req.config[(success ? 'contact_success' : 'contact_fail')]});
+            });
+
         }else{
             res.json({success: true, message: req.config.contact_success});
         }

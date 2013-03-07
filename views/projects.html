@@ -4,28 +4,28 @@
 <head>
     <meta charset="utf-8">
 
-    {>"views/partials/head.html"/}
+    {>"partials/head.html"/}
 </head>
 
 <body>
 <div id="container">
 
     <!-- Header-->
-    {>"views/partials/header.html"/}
+    {>"partials/header.html"/}
     <!--/Header-->
 
     <!-- Content-->
     <div id="content">
         <div class="wrapper clearfix"> <span class="top">&nbsp;</span>
 
-            {>"views/partials/title.html"/}
+            {>"partials/title.html"/}
 
             <div class="inner-content clearfix">
 
                 <div class="cms-content">
 
                     <div class="breadcrumbs">
-                        {>"views/partials/breadcrumbs.html"/}
+                        {>"partials/breadcrumbs.html"/}
                     </div>
 
                     {@content records=5}
@@ -83,19 +83,19 @@
                 <span class="arrow1">&nbsp;</span>
             </div>
 
-            {>"views/partials/phone.html"/}
+            {>"partials/phone.html"/}
         </div>
     </div>
     <!--/Content-->
 
     <!-- Footer-->
-    {>"views/partials/footer.html"/}
+    {>"partials/footer.html"/}
     <!-- /Footer-->
 </div>
 <!--! end of #container -->
 
 <!-- SCRIPTS -->
-{>"views/partials/scripts.html"/}
+{>"partials/scripts.html"/}
 
 </body>
 </html>

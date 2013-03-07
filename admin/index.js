@@ -1,11 +1,13 @@
+'use strict';
+if (!module.parent) console.error('Please don\'t call me directly.I am just the main app\'s minion.') || process.process.exit(1);
+
 var admin_forms = require('formage-admin'),
-    forms = admin_forms.forms,
     models = require('../models');
 
-module.exports = function (app) {
-    forms.serve_static(app);
+module.exports = function (app, express, mongoose) {
+    admin_forms.serve_static(app, express);
 
-    var admin = admin_forms.createAdmin(app, {root:'admin'});
+    var admin = admin_forms.createAdmin(app, {root:'admin'}, mongoose);
 
     admin.setAdminTitle(app.get('site'));
     admin.ensureUserExists(app.get('admin').username, app.get('admin').password);
@@ -45,6 +47,9 @@ module.exports = function (app) {
             options.sortable = 'order';
         }
 
-        admin.registerMongooseModel(name, model, null, options);
+        if (model.single)
+            admin.registerSingleRowModel(model, name, options);
+        else
+            admin.registerMongooseModel(name, model, null, options);
     }
 };

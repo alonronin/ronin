@@ -22,10 +22,11 @@ $(function() {
         e.preventDefault();
 
         var self = this;
-        $(self).find(':submit').prop({disabled: true});
-
         var o = $(self).serializeObject(),
             post = false;
+
+        $(self).find(':input').prop({disabled: true});
+        $(self).find('span.sent-btn').remove();
 
         $.postJSON('/thank-you', o).done(function(o){
             $(self).replaceWith($('<div />').addClass((o.success ? null : 'fail')).text(o.message));

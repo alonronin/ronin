@@ -1,23 +1,26 @@
 {
-  "name": "ronin-co-il",
-  "version": "0.0.3",
-  "private": true,
-  "scripts": {
-    "start": "node app"
-  },
-  "dependencies": {
-    "express": "3.0.0rc5",
-    "mongoose": "~3.3.1",
-    "consolidate": "~0.4.0",
-    "dustjs-linkedin": "~1.1.1",
-    "dustjs-helpers": "~1.1.0",
-    "cloudinary": "~0.2.5",
-    "formage-admin": "*",
-    "sugar": "~1.3.6",
-    "grunt-contrib-mincss": "~0.3.2"
-  },
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
-  }
+    "name":"ronin-co-il",
+    "version":"0.0.3",
+    "private":true,
+    "scripts":{
+        "start":"node app"
+    },
+    "dependencies":{
+        "express":"~3.1.0",
+        "mongoose":"~3.5.7",
+        "consolidate":"~0.8.0",
+        "dustjs-linkedin":"~1.1.1",
+        "dustjs-helpers":"~1.1.0",
+        "cloudinary":"~1.0.1",
+        "formage-admin":"git+https://github.com/Empeeric/formage-admin.git",
+        "sugar":"~1.3.8",
+        "nodemailer":"~0.3.43"
+    },
+    "devDependencies":{
+        "grunt-contrib-mincss":"~0.3.2"
+    },
+    "engines":{
+        "node":"0.8.x",
+        "npm":"1.1.x"
+    }
 }
