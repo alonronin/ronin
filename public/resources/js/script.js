@@ -11,8 +11,8 @@ $(function() {
     $("input[type=text], textarea").placeholder();
 
     $('.contact-form').addClass('glowable');
-    $('a[href="\/#contact"]').click(function(e) {
-        //e.preventDefault();
+    $('a[href="#contact"]').click(function(e) {
+        e.preventDefault();
         $.scrll('.contact-form', function() {
             $('.contact-form').glow();
         });
