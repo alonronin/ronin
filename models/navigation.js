@@ -22,6 +22,23 @@ navigationSchema.methods.toString = function(){
     return this.title;
 };
 
+navigationSchema.pre('validate', function(next) {
+    var url = this.url;
+    if (!url)
+        url = '/' + this.title;
+
+    url = url.replace(/[\?\'\"\@\!\#\$\%\^\&\*\(\)\+\=\_\~\{\}\[\]\\\|\,\;\:]/g, "")
+        .replace(/ +/g, "-")
+        .replace(/\-+/g, '-')
+        .replace(/(?:^\-|\-$)/g, '');
+
+    if (url.substr(0,1) !== '/')
+        url = '/' + url;
+
+    this.url = url;
+    next();
+});
+
 navigationSchema.path('url').validate(function(v, callback){
     this.db.model('navigation').findOne().where('url', this.url).ne('_id', this._id).exec(function(err, url){
         callback(url ? false: true);
