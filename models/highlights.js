@@ -1,12 +1,11 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var highlightsSchema = new Schema({
+var schema = new mongoose.Schema({
     title: { type: String, required: true },
-    text: { type: Schema.Types.Html },
+    text: { type: Types.Html },
     order: { type: Number, editable: false },
     show: { type: Boolean, 'default': true }
 });
 
-var highlights = module.exports = mongoose.model('highlights', highlightsSchema);
+var model = module.exports = mongoose.model('highlights', schema);

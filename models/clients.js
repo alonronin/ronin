@@ -1,12 +1,11 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var clientsSchema = new Schema({
+var schema = new mongoose.Schema({
     title: { type: String },
-    picture: { type: Schema.Types.Picture },
+    picture: { type: Types.Picture },
     order: { type: Number, editable: false },
     show: { type: Boolean, default: true }
 });
 
-var clients = module.exports = mongoose.model('clients', clientsSchema);
+var model = module.exports = mongoose.model('clients', schema);

@@ -1,17 +1,16 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var contentSchema = new Schema({
-    navigation: { type: ObjectId, ref: 'navigation' },
+var schema = new mongoose.Schema({
+    navigation: { type: Types.ObjectId, ref: 'navigation' },
     title: { type: String, required: true },
-    picture: { type: Schema.Types.Picture },
+    picture: { type: Types.Picture },
     description: { type: String },
-    text: { type: Schema.Types.Html },
-    url: { type: ObjectId, ref: 'navigation' },
+    text: { type: Types.Html },
+    url: { type: Types.ObjectId, ref: 'navigation' },
     link: { type: String },
     order: { type: Number, editable: false },
     show: { type: Boolean, 'default': true }
 });
 
-var content = module.exports = mongoose.model('content', contentSchema);
+var model = module.exports = mongoose.model('content', schema);

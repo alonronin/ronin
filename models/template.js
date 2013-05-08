@@ -1,14 +1,13 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var templateSchema = new Schema({
+var schema = new mongoose.Schema({
     title: { type: String, required: true }
 });
 
-templateSchema.methods.toString = function(){
+schema.methods.toString = function(){
     return this.title;
 };
 
-var navigation = module.exports = mongoose.model('template', templateSchema);
+var model = module.exports = mongoose.model('template', schema);
 

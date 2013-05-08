@@ -1,11 +1,10 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var mainTitleSchema = new Schema({
+var schema = new mongoose.Schema({
     title: { type: String, required: true },
     order: { type: Number, editable: false },
     show: { type: Boolean, 'default': true }
 });
 
-var main_title = module.exports = mongoose.model('main_title', mainTitleSchema);
+var model = module.exports = mongoose.model('main_title', schema);

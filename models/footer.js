@@ -1,17 +1,16 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var linksSchema = new Schema({
+var linksSchema = new mongoose.Schema({
     title: {type: String},
     url: String
 });
 
-var footerSchema = new Schema({
+var schema = new mongoose.Schema({
     header: { type: String },
     links: [linksSchema],
     order: { type: Number, editable: false },
     show: { type: Boolean, default: true }
 });
 
-var footer = module.exports = mongoose.model('footer', footerSchema);
+var model = module.exports = mongoose.model('footer', schema);

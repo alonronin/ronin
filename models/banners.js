@@ -1,14 +1,13 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var bannersSchema = new Schema({
+var schema = new mongoose.Schema({
     title: { type: String },
-    description: { type: Schema.Types.Text },
-    picture: { type: Schema.Types.Picture },
+    description: { type: Types.Text },
+    picture: { type: Types.Picture },
     url: { type: String },
     order: { type: Number, editable: false },
     show: { type: Boolean, default: true }
 });
 
-var banners = module.exports = mongoose.model('banners', bannersSchema);
+var model = module.exports = mongoose.model('banners', schema);

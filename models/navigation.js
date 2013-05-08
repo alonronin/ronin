@@ -1,28 +1,27 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var metaSchema = new Schema({
+var metaSchema = new mongoose.Schema({
     name: String,
-    content: {type: Schema.Types.Text}
+    content: {type: Types.Text}
 });
 
-var navigationSchema = new Schema({
-    parent: { type: ObjectId, ref: 'navigation'},
+var schema = new mongoose.Schema({
+    parent: { type: Types.ObjectId, ref: 'navigation'},
     title: { type: String, required: true },
     meta: [metaSchema],
     url: { type: String, trim: true, lowercase: true},
-    template: { type: ObjectId, ref: 'template'},
+    template: { type: Types.ObjectId, ref: 'template'},
     order: { type: Number, editable: false },
     menu: { type: Boolean, 'default': true },
     show: { type: Boolean, 'default': true }
 });
 
-navigationSchema.methods.toString = function(){
+schema.methods.toString = function(){
     return this.title;
 };
 
-navigationSchema.pre('validate', function(next) {
+schema.pre('validate', function(next) {
     var url = this.url;
     if (!url)
         url = '/' + this.title;
@@ -39,11 +38,11 @@ navigationSchema.pre('validate', function(next) {
     next();
 });
 
-navigationSchema.path('url').validate(function(v, callback){
+schema.path('url').validate(function(v, callback){
     this.db.model('navigation').findOne().where('url', this.url).ne('_id', this._id).exec(function(err, url){
         callback(url ? false: true);
     });
 }, 'url already exists');
 
-var navigation = module.exports = mongoose.model('navigation', navigationSchema);
+var model = module.exports = mongoose.model('navigation', schema);
 

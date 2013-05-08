@@ -1,14 +1,13 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.Types.ObjectId;
+    Types = mongoose.Schema.Types;
 
-var contactSchema = new Schema({
+var schema = new mongoose.Schema({
     name: { type: String },
     email: { type: String },
     phone: { type: String },
-    message: { type: Schema.Types.Text },
-    req: { type: Object },
-    date: { type: Date  }
+    message: { type: Types.Text },
+    req: Object,
+    date: Date
 });
 
-var contact = module.exports = mongoose.model('contact', contactSchema);
+var model = module.exports = mongoose.model('contact', schema);
