@@ -11,9 +11,13 @@ pids
 logs
 results
 
-node_modules
 npm-debug.log
 .idea
-/public/cdn/*.jpg
 /tools/db-production-dump.bat
 /tools/db-restore-local-to-production.bat
+
+/node_modules/.bin
+/node_modules/jade
+/node_modules/dustjs-linkedin
+/node_modules/express
+
