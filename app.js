@@ -41,7 +41,8 @@ app.use(function(req, res, next){
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('formage-admin').init(app, express, require('./models'), {
-    title: app.get('site') + ' Admin'
+    title: app.get('site') + ' Admin',
+    password: app.get('admin').password
 });
 
 app.use(app.router);
