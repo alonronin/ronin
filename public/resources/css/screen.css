@@ -139,7 +139,7 @@ a:link:hover, a:visited:hover { text-decoration: underline; }
 // 1.BASIC ELEMENTS
 //	 Define styles for basic elements: body, h1-h6, ul, ol, a, p, etc.
 //------------------------------------------*/
-body { background:url(../images/theme/body-bg.gif) repeat left top; color:#000; font-family:"Lucida Sans Unicode", Arial, sans-serif; }
+body { background:url(../images/theme/body-bg.gif) repeat left top; color:#000; font-family:"Lucida Sans Unicode", Arial, sans-serif; overflow-x: hidden; }
 h1, h2, h3, h4, h5, h6, p, li { line-height:1.0em; }
 
 
