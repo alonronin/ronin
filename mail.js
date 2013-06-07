@@ -1,4 +1,3 @@
-
 var mail = {
     init: function(config) {
         this.transport = require('nodemailer').createTransport("SMTP",{

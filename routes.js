@@ -99,7 +99,8 @@ models
 
         });
 
-        var mail = require('./mail').init(app.get('sendgrid'));
+        var mail = require('./mail');
+        mail.init(app.get('sendgrid'));
 
         app.post('/thank-you', [config], function(req, res){
             var o = req.body,
@@ -107,7 +108,6 @@ models
 
             Object.each(o, function(key, value){
                 o[key] = value.stripTags().trim();
-                console.log(o[key].length);
                 if(o[key].length) send = true;
             });
 
@@ -125,7 +125,6 @@ models
                     message.html = text;
                 });
 
-                //console.log('Sending mail', message);
                 var contact = new models.contact(o);
                 contact.save();
 
